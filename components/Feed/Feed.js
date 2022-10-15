@@ -10,14 +10,11 @@ function Feed() {
       const options = {
         method: 'GET',
         url: 'https://youtube-v31.p.rapidapi.com/search',
-        method: 'GET',
-        url: 'https://youtube-v31.p.rapidapi.com/search',
         params: {
-          q: 'music',
-          part: 'snippet,id',
-          regionCode: 'US',
-          maxResults: '12',
-          order: 'date',
+          relatedToVideoId: '7ghhRHRP6t4',
+          part: 'id,snippet',
+          type: 'video',
+          maxResults: '16',
         },
         headers: {
           'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
