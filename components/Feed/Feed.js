@@ -37,8 +37,6 @@ function Feed() {
     }
   }
 
-  useEffect(() => {}, [dispatch])
-
   return (
     <div
       id='feed'
@@ -47,13 +45,13 @@ function Feed() {
       <div
         onScroll={onScroll}
         ref={feedRef}
-        className='mb-10 grid h-full w-full grid-cols-1 gap-10 overflow-y-auto scroll-smooth rounded-md bg-gray-100 p-3 pb-32 first:mr-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+        className='mb-10 grid h-full w-full grid-cols-1 gap-10 overflow-y-auto scroll-smooth rounded-md bg-gray-100 p-3 pb-32 text-center first:mr-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
       >
         {videos &&
           videos.map((video, i) => <VideoCard key={i} video={video} />)}
 
         {loading && (
-          <div className='flex h-full w-full flex-1 justify-center'>
+          <div className='flex min-w-full justify-center'>
             <div className='loader'></div>
           </div>
         )}
