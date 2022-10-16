@@ -2,9 +2,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectActiveCategory } from '../../redux/videoSlice'
 
 function VideoCard({ video }) {
-  const router = useRouter
+  const activeCategory = useSelector(selectActiveCategory)
+
+  // video id
+  const videoId = activeCategory === 'All' ? video.id : video.id.videoId
+
+  // Fall back to the default image if the video doesn't have a thumbnail
   const [imageError, setImageError] = useState(false)
   const fallBackSrc =
     'https://images.unsplash.com/photo-1662917697998-e5825f2b7831?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
@@ -13,7 +20,7 @@ function VideoCard({ video }) {
     <Link
       href={{
         pathname: '/watch',
-        query: { v: video.id.videoId },
+        query: { v: videoId },
       }}
     >
       <div className='flex flex-col items-center'>

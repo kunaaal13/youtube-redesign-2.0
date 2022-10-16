@@ -6,6 +6,7 @@ const initialState = {
   nextPageToken: '',
   activeCategory: 'All',
   loading: false,
+  totalResults: 0,
 }
 
 export const fetchVideos = createAsyncThunk(
@@ -59,10 +60,17 @@ export const fetchVideos = createAsyncThunk(
   }
 )
 
+// On scroll
 export const fetchMoreVideos = createAsyncThunk(
   'feed/AddMoreVideos',
-  async ({ category, nextPageToken }, thunkAPI) => {
-    if (category === 'All') {
+  async (category, thunkAPI) => {
+    // Get the current state
+    const state = thunkAPI.getState().video
+    const { activeCategory, nextPageToken } = state
+    console.log('nextPageToken', nextPageToken)
+    console.log('activeCategory', activeCategory)
+
+    if (activeCategory === 'All') {
       try {
         const res = await axios.get(
           'https://youtube.googleapis.com/youtube/v3/videos',
@@ -73,7 +81,7 @@ export const fetchMoreVideos = createAsyncThunk(
               chart: 'mostPopular',
               regionCode: 'IN',
               maxResults: 12,
-              nextPageToken: nextPageToken,
+              pageToken: nextPageToken,
             },
           }
         )
@@ -89,12 +97,12 @@ export const fetchMoreVideos = createAsyncThunk(
           'https://youtube-v31.p.rapidapi.com/search',
           {
             params: {
-              q: category,
+              q: activeCategory,
               part: 'snippet,id',
               regionCode: 'IN',
-              maxResults: 20,
+              maxResults: 12,
               order: 'date',
-              nextPageToken: nextPageToken,
+              pageToken: nextPageToken,
             },
             headers: {
               'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
@@ -137,6 +145,10 @@ export const videoSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload
     },
+
+    setTotalResults: (state, action) => {
+      state.totalResults = action.payload
+    },
   },
 
   extraReducers: (builder) => {
@@ -148,6 +160,7 @@ export const videoSlice = createSlice({
       state.loading = false
       state.videos = action.payload.items
       state.nextPageToken = action.payload.nextPageToken
+      state.totalResults = action.payload.pageInfo.totalResults
     })
 
     builder.addCase(fetchVideos.rejected, (state, action) => {
@@ -162,8 +175,9 @@ export const videoSlice = createSlice({
     builder.addCase(fetchMoreVideos.fulfilled, (state, action) => {
       console.log('before', action.payload)
       state.loading = false
-      state.videos = [...state.videos, ...action.payload.items]
+      state.videos = state.videos && [...state.videos, ...action.payload.items]
       state.nextPageToken = action.payload.nextPageToken
+      state.totalResults = action.payload.pageInfo.totalResults
       console.log(state.nextPageToken)
     })
 
@@ -180,6 +194,7 @@ export const {
   setLoading,
   setActiveCategory,
   setNextPageToken,
+  setTotalResults,
 } = videoSlice.actions
 
 // selectors
@@ -187,5 +202,6 @@ export const selectVideos = (state) => state.video.videos
 export const selectNextPageToken = (state) => state.video.nextPageToken
 export const selectActiveCategory = (state) => state.video.activeCategory
 export const selectLoading = (state) => state.video.loading
+export const selectTotalResults = (state) => state.video.totalResults
 
 export default videoSlice.reducer

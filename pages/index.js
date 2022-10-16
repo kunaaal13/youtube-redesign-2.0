@@ -4,14 +4,20 @@ import CategoriesBar from '../components/Categories/CategoriesBar'
 import Feed from '../components/Feed/Feed'
 import Header from '../components/Header/header'
 import Sidebar from '../components/Sidebar/Sidebar'
-import { setNextPageToken, setVideos } from '../redux/videoSlice'
+import {
+  setActiveCategory,
+  setNextPageToken,
+  setTotalResults,
+  setVideos,
+} from '../redux/videoSlice'
 import { fetchVideoSSR } from '../utils/fetchData'
 
-export default function Home({ items, nextPageToken }) {
+export default function Home({ items, nextPageToken, pageInfo }) {
   const dispatch = useDispatch()
   dispatch(setVideos(items))
-  console.log('nextPageToken', nextPageToken)
+  dispatch(setActiveCategory('All'))
   dispatch(setNextPageToken(nextPageToken))
+  dispatch(setTotalResults(pageInfo.totalResults))
 
   return (
     <>
@@ -43,12 +49,13 @@ export default function Home({ items, nextPageToken }) {
 export async function getServerSideProps() {
   const res = await fetchVideoSSR()
 
-  const { items, nextPageToken } = res
+  const { items, nextPageToken, pageInfo } = res
 
   return {
     props: {
       items,
       nextPageToken,
+      pageInfo,
     }, // will be passed to the page component as props
   }
 }

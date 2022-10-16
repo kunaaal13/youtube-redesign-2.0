@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchVideos,
   selectActiveCategory,
+  selectVideos,
   setActiveCategory,
   setVideos,
 } from '../../redux/videoSlice'
@@ -11,6 +12,7 @@ import { categories } from '../../utils/constants'
 function CategoriesBar() {
   const activeCategory = useSelector(selectActiveCategory)
   const dispatch = useDispatch()
+  const videos = useSelector(selectVideos)
 
   const updateCategory = async (category) => {
     if (activeCategory !== category) {

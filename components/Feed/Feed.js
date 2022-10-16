@@ -5,6 +5,7 @@ import {
   selectActiveCategory,
   selectLoading,
   selectNextPageToken,
+  selectTotalResults,
   selectVideos,
   setLoading,
 } from '../../redux/videoSlice'
@@ -17,20 +18,21 @@ function Feed() {
   const loading = useSelector(selectLoading)
   const nextPageToken = useSelector(selectNextPageToken)
   const activeCategory = useSelector(selectActiveCategory)
+  const totalResults = useSelector(selectTotalResults)
 
   // Implementing infinite scroll
   const onScroll = () => {
+    if (videos && videos.length >= totalResults) {
+      return
+    }
+
     if (feedRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = feedRef.current
       if (scrollTop + clientHeight === scrollHeight) {
         // This will be triggered after hitting the last element.
+        const category = activeCategory
         dispatch(setLoading(true))
-        dispatch(
-          fetchMoreVideos({
-            nextPageToken: nextPageToken,
-            category: activeCategory,
-          })
-        )
+        dispatch(fetchMoreVideos(category))
       }
     }
   }
@@ -50,7 +52,11 @@ function Feed() {
         {videos &&
           videos.map((video, i) => <VideoCard key={i} video={video} />)}
 
-        {loading && <div>loading</div>}
+        {loading && (
+          <div className='flex h-full w-full flex-1 justify-center'>
+            <div className='loader'></div>
+          </div>
+        )}
       </div>
     </div>
   )
