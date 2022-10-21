@@ -12,16 +12,19 @@ function VideoCard({ title, channelTitle, timestamp, videoId, url, i }) {
         query: { v: videoId },
       }}
     >
-      <div className={`mb-4 flex w-full cursor-pointer items-start `}>
-        <Image
-          src={url}
-          alt=''
-          width={250}
-          height={130}
-          objectFit='rounded-md'
-          className={imageError ? 'hidden' : ''}
-          onError={() => setImageError(true)}
-        />
+      <div
+        className={`mb-4 flex w-full cursor-pointer items-start ${
+          imageError ? 'hidden' : ''
+        }`}
+      >
+        <div className='h-full '>
+          <img
+            src={url}
+            alt=''
+            className={'h-24 w-[18rem] rounded-md object-cover'}
+            onError={() => setImageError(true)}
+          />
+        </div>
 
         <div className='ml-2 flex w-full flex-col'>
           <p className='text-sm font-semibold line-clamp-2'>{title}</p>

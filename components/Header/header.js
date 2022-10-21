@@ -9,6 +9,7 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import Search from './Search'
 
 function Header() {
   const [showMobileSearch, setShowMobileSearch] = useState(false)
@@ -49,15 +50,8 @@ function Header() {
         </div>
       </div>
       {/* Search Container */}
-      <div className='hidden flex-grow items-center rounded-full border border-gray-300 lg:inline-flex'>
-        {/* Search */}
-        <input
-          type='text'
-          placeholder='Search'
-          className='ml-5 h-10 flex-1 bg-white outline-none'
-        />
-        <MagnifyingGlassIcon className='mx-2 h-8 w-8 cursor-pointer rounded-full bg-gray-100 p-2' />
-      </div>
+      <Search desktop={true} />
+
       {/* Right Container */}
       <div className='flex h-full flex-1 items-center justify-end'>
         {/* Search Icon */}
@@ -95,15 +89,7 @@ function Header() {
           />
 
           {/* Search container */}
-          <div className='flex flex-grow items-center rounded-full border border-gray-300'>
-            {/* Search */}
-            <input
-              type='text'
-              placeholder='Search'
-              className='ml-5 h-10 flex-1 bg-white outline-none'
-            />
-            <MagnifyingGlassIcon className='mx-2 h-8 w-8 cursor-pointer rounded-full bg-gray-100 p-2' />
-          </div>
+          <Search />
         </div>
       )}
     </div>

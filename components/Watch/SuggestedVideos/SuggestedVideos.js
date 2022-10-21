@@ -1,8 +1,6 @@
 import dayjs from 'dayjs'
-import Image from 'next/image'
 import React from 'react'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import Link from 'next/link'
 import VideoCard from './VideoCard'
 
 function SuggestedVideos({ videos }) {

@@ -99,3 +99,28 @@ export const fetchChannelDetails = async (id) => {
     console.log(error)
   }
 }
+
+// search results
+export const fetchSearchResults = async (value) => {
+  try {
+    const res = await axios.get('https://youtube-v31.p.rapidapi.com/search', {
+      params: {
+        q: value,
+        part: 'snippet,id',
+        regionCode: 'IN',
+        maxResults: '20',
+        order: 'viewCount',
+        type: 'video',
+      },
+
+      headers: {
+        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+        'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+      },
+    })
+
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}
