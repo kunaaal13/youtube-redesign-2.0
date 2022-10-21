@@ -9,8 +9,8 @@ function ResultsMain() {
   console.log('results 2', typeof results)
 
   return (
-    <div className='feed h-full w-full flex-1 overflow-hidden border-t p-3 lg:flex-[0.85]'>
-      <div className='mb-10 h-full w-full overflow-y-auto scroll-smooth rounded-md bg-gray-100 p-3 pb-32 text-center'>
+    <div className='feed h-full w-full flex-1 overflow-hidden border-t p-3 pb-7 lg:flex-[0.85]'>
+      <div className='mb-10 h-full w-full overflow-y-auto scroll-smooth rounded-md bg-gray-100 p-3 pr-7 pb-80 text-center md:p-6'>
         {results &&
           results.map((result, i) => (
             <VideoCard
@@ -20,6 +20,8 @@ function ResultsMain() {
               channel={result.snippet.channelTitle}
               timestamp={result.snippet.publishedAt}
               description={result.snippet.description}
+              videoId={result.id.videoId}
+              total={results.length}
             />
           ))}
       </div>

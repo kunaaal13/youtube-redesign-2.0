@@ -109,7 +109,7 @@ export const fetchSearchResults = async (value) => {
         part: 'snippet,id',
         regionCode: 'IN',
         maxResults: '20',
-        order: 'viewCount',
+        order: 'title',
         type: 'video',
       },
 
