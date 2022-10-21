@@ -1,9 +1,25 @@
+import dayjs from 'dayjs'
+import Image from 'next/image'
 import React from 'react'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import Link from 'next/link'
+import VideoCard from './VideoCard'
 
-function SuggestedVideos() {
+function SuggestedVideos({ videos }) {
+  dayjs.extend(relativeTime)
+  console.log(videos[0])
   return (
-    <div className='hidden h-full flex-[0.33] py-3 xl:inline-flex'>
-      SuggestedVideos
+    <div className='hidden h-full flex-[0.33] flex-col py-3 pb-48 pr-5 xl:inline-flex'>
+      {videos.map((video, i) => (
+        <VideoCard
+          key={i}
+          videoId={video.id.videoId}
+          url={video.snippet.thumbnails.medium.url}
+          title={video.snippet.title}
+          channelTitle={video.snippet.channelTitle}
+          timestamp={dayjs().to(dayjs(video.snippet.publishedAt))}
+        />
+      ))}
     </div>
   )
 }

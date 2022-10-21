@@ -12,6 +12,7 @@
     "@heroicons/react": "^2.0.12",
     "@reduxjs/toolkit": "^1.8.6",
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@tanem/react-nprogress": "^5.0.15",
     "axios": "^1.1.2",
     "dayjs": "^1.11.5",
     "next": "12.3.1",

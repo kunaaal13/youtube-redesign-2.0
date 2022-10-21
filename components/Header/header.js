@@ -7,10 +7,12 @@ import {
 } from '@heroicons/react/24/outline'
 // import { signInWithPopup, signOut } from 'firebase/auth'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 function Header() {
   const [showMobileSearch, setShowMobileSearch] = useState(false)
+  const router = useRouter()
 
   // To handle the mobile search bar
   useEffect(() => {
@@ -25,15 +27,18 @@ function Header() {
   })
 
   return (
-    <div className='relative w-full h-16 py-2 px-2 lg:px-4 flex items-center justify-center top-0 z-50'>
+    <div className='relative top-0 z-50 flex h-16 w-full items-center justify-center py-2 px-2 lg:px-4'>
       {/* Left Container */}
-      <div className='lg:flex-1 h-full flex items-center'>
+      <div className='flex h-full items-center lg:flex-1'>
         {/* Hamburger menu icon */}
         <Bars3Icon className='h-5 w-5 cursor-pointer lg:hidden' />
 
         {/* Logo */}
-        <div className='flex items-center justify-center ml-1 lg:ml-0'>
+        <div className='ml-1 flex items-center justify-center lg:ml-0'>
           <Image
+            onClick={() => {
+              router.push('/')
+            }}
             src='/logo-full.svg'
             width={130}
             height={100}
@@ -44,30 +49,30 @@ function Header() {
         </div>
       </div>
       {/* Search Container */}
-      <div className='hidden lg:inline-flex items-center flex-grow border border-gray-300 rounded-full'>
+      <div className='hidden flex-grow items-center rounded-full border border-gray-300 lg:inline-flex'>
         {/* Search */}
         <input
           type='text'
           placeholder='Search'
-          className='h-10 ml-5 flex-1 outline-none bg-white'
+          className='ml-5 h-10 flex-1 bg-white outline-none'
         />
-        <MagnifyingGlassIcon className='h-8 w-8 p-2 rounded-full mx-2 bg-gray-100 cursor-pointer' />
+        <MagnifyingGlassIcon className='mx-2 h-8 w-8 cursor-pointer rounded-full bg-gray-100 p-2' />
       </div>
       {/* Right Container */}
-      <div className='flex-1 h-full flex items-center justify-end'>
+      <div className='flex h-full flex-1 items-center justify-end'>
         {/* Search Icon */}
         <MagnifyingGlassIcon
           onClick={() => {
             setShowMobileSearch(true)
           }}
-          className='lg:hidden h-9 w-9 p-2 rounded-full mx-2 bg-gray-100 cursor-pointer'
+          className='mx-2 h-9 w-9 cursor-pointer rounded-full bg-gray-100 p-2 lg:hidden'
         />
 
         {/* Squares */}
-        <Squares2X2Icon className='hidden lg:inline-flex h-9 w-9 rounded-full p-2 bg-gray-100 mr-2 lg:mr-3 cursor-pointer' />
+        <Squares2X2Icon className='mr-2 hidden h-9 w-9 cursor-pointer rounded-full bg-gray-100 p-2 lg:mr-3 lg:inline-flex' />
 
         {/* Notifications */}
-        <BellIcon className='h-9 w-9 rounded-full p-2 bg-gray-100 mr-2 lg:mr-3 cursor-pointer' />
+        <BellIcon className='mr-2 h-9 w-9 cursor-pointer rounded-full bg-gray-100 p-2 lg:mr-3' />
 
         {/* Avatar */}
         <img
@@ -75,29 +80,29 @@ function Header() {
             'https://pbs.twimg.com/profile_images/1562753790369218560/wtiHWrkG_400x400.jpg'
           }
           alt='avatar'
-          className='h-9 w-9 lg:h-11 lg:w-11 rounded-full cursor-pointer'
+          className='h-9 w-9 cursor-pointer rounded-full lg:h-11 lg:w-11'
         />
       </div>
 
       {/* Search in Mobile view */}
       {showMobileSearch && (
-        <div className='absolute top-0 left-0 w-full h-full bg-white z-[100] py-2 px-2 lg:px-4 flex items-center justify-center'>
+        <div className='absolute top-0 left-0 z-[100] flex h-full w-full items-center justify-center bg-white py-2 px-2 lg:px-4'>
           <ArrowLeftIcon
             onClick={() => {
               setShowMobileSearch(false)
             }}
-            className='h-9 w-9 rounded-full p-2 bg-gray-100 mr-3 cursor-pointer'
+            className='mr-3 h-9 w-9 cursor-pointer rounded-full bg-gray-100 p-2'
           />
 
           {/* Search container */}
-          <div className='flex items-center flex-grow border border-gray-300 rounded-full'>
+          <div className='flex flex-grow items-center rounded-full border border-gray-300'>
             {/* Search */}
             <input
               type='text'
               placeholder='Search'
-              className='h-10 ml-5 flex-1 outline-none bg-white'
+              className='ml-5 h-10 flex-1 bg-white outline-none'
             />
-            <MagnifyingGlassIcon className='h-8 w-8 p-2 rounded-full mx-2 bg-gray-100 cursor-pointer' />
+            <MagnifyingGlassIcon className='mx-2 h-8 w-8 cursor-pointer rounded-full bg-gray-100 p-2' />
           </div>
         </div>
       )}

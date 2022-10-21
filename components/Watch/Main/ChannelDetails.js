@@ -4,7 +4,7 @@ import numeral from 'numeral'
 
 function ChannelDetails({ logoUrl, subscribers, title, description }) {
   return (
-    <div className='mb-2 w-full border-b py-3 pb-5'>
+    <div className='mb-2 w-full border-b py-3'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center'>
           <Image
@@ -31,7 +31,9 @@ function ChannelDetails({ logoUrl, subscribers, title, description }) {
       </div>
 
       {/* Video Description */}
-      <p className='mt-3 ml-16 w-4/5 text-sm text-[#606060]'>{description}</p>
+      <p className='mt-3 ml-16 w-4/5 text-sm text-[#606060] line-clamp-3'>
+        {description}
+      </p>
     </div>
   )
 }

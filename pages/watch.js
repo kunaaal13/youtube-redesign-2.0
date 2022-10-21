@@ -22,7 +22,7 @@ function Watch({ videoId, comments, suggestedVideos, video, channel }) {
       <Header />
 
       <div className='flex h-full w-full overflow-hidden p-3 xl:px-4'>
-        <main className='flex h-full w-full overflow-y-scroll'>
+        <main className='flex h-full w-full overflow-y-scroll md:pl-10 md:pr-6'>
           <WatchMain
             videoId={videoId}
             video={video}
@@ -30,7 +30,7 @@ function Watch({ videoId, comments, suggestedVideos, video, channel }) {
             comments={comments}
           />
 
-          <SuggestedVideos />
+          <SuggestedVideos videos={suggestedVideos} />
         </main>
       </div>
     </div>

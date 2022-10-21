@@ -49,7 +49,7 @@ export const fetchSuggestedVideos = async (id) => {
         relatedToVideoId: id,
         part: 'id,snippet',
         type: 'video',
-        maxResults: 50,
+        maxResults: 100,
       },
       headers: {
         'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
@@ -69,7 +69,7 @@ export const fetchVideoComments = async (id) => {
     const res = await axios.get(
       'https://youtube-v31.p.rapidapi.com/commentThreads',
       {
-        params: { part: 'snippet', videoId: id, maxResults: 100 },
+        params: { part: 'snippet', videoId: id, maxResults: 60 },
         headers: {
           'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
           'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',

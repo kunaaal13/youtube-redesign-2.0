@@ -12,7 +12,6 @@ import numeral from 'numeral'
 
 function VideoDetails({ likes, views, title, timestamp, tags }) {
   dayjs.extend(relativeTime)
-  console.log(tags)
   return (
     <div className='mb-2 w-full border-b pb-5'>
       {/* Video Tags */}

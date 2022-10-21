@@ -2,16 +2,14 @@ import React from 'react'
 import VideoPlayer from './VideoPlayer/VideoPlayer'
 import VideoDetails from './VideoDetails'
 import ChannelDetails from './ChannelDetails'
+import VideoComments from './VideoComments'
 
 function WatchMain({ videoId, video, channel, comments }) {
   let tags = video.snippet.tags
   tags = tags && tags.length >= 2 ? tags.slice(0, 2) : tags
 
-  console.log(channel)
-  console.log(video)
-
   return (
-    <div className='flex h-full flex-1 flex-col items-center px-3 py-3 sm:px-9 xl:flex-[0.67]'>
+    <div className='flex h-full flex-1 flex-col items-center px-3 py-3 pb-48 sm:px-9 xl:flex-[0.67]'>
       <VideoPlayer id={videoId} />
 
       {/* Video Details */}
@@ -30,6 +28,9 @@ function WatchMain({ videoId, video, channel, comments }) {
         title={channel.snippet.title}
         description={channel.snippet.description}
       />
+
+      {/* Comments */}
+      <VideoComments comments={comments} />
     </div>
   )
 }
