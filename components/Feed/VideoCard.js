@@ -34,8 +34,8 @@ function VideoCard({ video }) {
           />
         </div>
 
-        <div className='mt-2 flex w-[264px] flex-col items-start py-[2px] px-2 sm:w-96 md:w-[17rem]'>
-          <p className='text-start text-xs font-semibold text-black line-clamp-2 md:text-sm'>
+        <div className='mt-2 flex w-full flex-col items-start py-[2px] px-2 sm:w-96 md:w-[17rem]'>
+          <p className='text-start font-semibold text-black line-clamp-2 md:text-sm'>
             {video.snippet.title}
           </p>
         </div>
