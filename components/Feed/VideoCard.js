@@ -24,13 +24,13 @@ function VideoCard({ video }) {
       }}
     >
       <div className='flex flex-col items-center'>
-        <div className='relative mx-auto h-44 w-[264px] cursor-pointer rounded-md border sm:w-96 md:h-40 md:w-[17rem]'>
+        <div className='relative mx-auto h-52 w-full cursor-pointer rounded-md border sm:h-60 sm:w-96 md:h-40 md:w-[17rem]'>
           <Image
             src={imageError ? fallBackSrc : video.snippet.thumbnails.high.url}
             onError={() => setImageError(true)}
             alt={`Thumbnail for`}
             layout='fill'
-            className={`h-full w-full rounded-md object-cover`}
+            className={`h-full w-3/5 rounded-md object-cover sm:w-full`}
           />
         </div>
 
