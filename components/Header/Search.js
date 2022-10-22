@@ -6,6 +6,7 @@ import {
   fetchSearchResults,
   selectSearch,
   setSearch,
+  setSearchResults,
 } from '../../redux/searchSlice'
 
 function Search({ desktop }) {
@@ -20,7 +21,7 @@ function Search({ desktop }) {
 
   const handleSearch = () => {
     dispatch(setSearch(value))
-    // dispatch(fetchSearchResults('search'))
+    dispatch(setSearchResults(null))
 
     router.push('/results', {
       pathname: '/results',
