@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Header from '../components/Header/header'
 import ResultsMain from '../components/Results/ResultsMain'
@@ -14,7 +14,10 @@ function Results({ res, search_query }) {
 
   console.log('search_query', search_query)
 
-  dispatch(setSearchResults(res))
+  useEffect(() => {
+    dispatch(setSearchResults(null))
+    dispatch(setSearchResults(res))
+  }, [dispatch, res])
 
   return (
     <div className='h-screen overflow-hidden bg-white text-black'>

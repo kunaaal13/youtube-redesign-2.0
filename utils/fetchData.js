@@ -107,9 +107,8 @@ export const fetchSearchResults = async (search_query) => {
       params: {
         q: search_query,
         part: 'snippet,id',
-        regionCode: 'IN',
         maxResults: '20',
-        order: 'viewCount',
+        order: 'date',
         type: 'video',
       },
 
