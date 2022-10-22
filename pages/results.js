@@ -15,9 +15,13 @@ function Results({ res, search_query }) {
   console.log('search_query', search_query)
 
   useEffect(() => {
-    dispatch(setSearchResults(null))
-    dispatch(setSearchResults(res))
-  }, [dispatch, res])
+    const fetchResults = async () => {
+      const results = await fetchSearchResults(search_query)
+      dispatch(setSearchResults(results.items))
+    }
+
+    fetchResults()
+  }, [dispatch, search_query])
 
   return (
     <div className='h-screen overflow-hidden bg-white text-black'>
