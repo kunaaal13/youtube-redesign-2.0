@@ -1,26 +1,25 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Header from '../components/Header/header'
 import ResultsMain from '../components/Results/ResultsMain'
 import Sidebar from '../components/Sidebar/Sidebar'
-import { setSearchResults } from '../redux/searchSlice'
+import { setSearch, setSearchResults } from '../redux/searchSlice'
 import { fetchSearchResults } from '../utils/fetchData'
 
 function Results({ res, search_query }) {
   const dispatch = useDispatch()
-  console.log('res', res)
-  const [results, setResults] = useState(null)
-
-  console.log('search_query', search_query)
+  const router = useRouter()
 
   useEffect(() => {
     const fetchResults = async () => {
-      const results = await fetchSearchResults(search_query)
+      const { search_query } = router.query
+      const value = search_query
+      const results = await fetchSearchResults(value)
+      dispatch(setSearch(value))
       dispatch(setSearchResults(null))
       dispatch(setSearchResults(results.items))
-      setResults(results.items)
     }
 
     fetchResults()
@@ -41,7 +40,7 @@ function Results({ res, search_query }) {
         <Sidebar />
 
         <div className='h-full flex-1 overflow-hidden border-t xl:flex-[0.85]'>
-          <ResultsMain results={results} />
+          <ResultsMain />
         </div>
       </main>
     </div>
