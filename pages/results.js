@@ -17,6 +17,7 @@ function Results({ res, search_query }) {
   useEffect(() => {
     const fetchResults = async () => {
       const results = await fetchSearchResults(search_query)
+      dispatch(setSearchResults(null))
       dispatch(setSearchResults(results.items))
     }
 
