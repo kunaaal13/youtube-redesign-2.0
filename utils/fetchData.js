@@ -101,14 +101,14 @@ export const fetchChannelDetails = async (id) => {
 }
 
 // search results
-export const fetchSearchResults = async (search_query) => {
+export const fetchSearchResults = async (value) => {
   try {
     const res = await axios.get('https://youtube-v31.p.rapidapi.com/search', {
       params: {
-        q: search_query,
+        q: value,
         part: 'snippet,id',
-        maxResults: '20',
-        order: 'date',
+        maxResults: 20,
+        order: 'relevance',
         type: 'video',
       },
 

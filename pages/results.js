@@ -47,7 +47,9 @@ export default Results
 export async function getServerSideProps(context) {
   const { search_query } = context.query
 
-  const res = await fetchSearchResults(search_query)
+  const value = search_query
+
+  const res = await fetchSearchResults(value)
 
   return {
     props: {
