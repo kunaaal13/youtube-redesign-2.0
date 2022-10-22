@@ -16,22 +16,22 @@ function ChannelDetails({ logoUrl, subscribers, title, description }) {
           />
 
           <div className='ml-5'>
-            <h3 className='font-semibold'>{title}</h3>
+            <h3 className='text-sm font-semibold'>{title}</h3>
 
-            <p className='mb-1 text-xs text-[#606060]'>
+            <p className='mb-1 hidden text-xs text-[#606060] sm:inline-flex'>
               {numeral(subscribers).format('0a')} Subscribers
             </p>
           </div>
         </div>
 
         {/* Subscribe button */}
-        <div className='mr-3 cursor-pointer rounded-md border bg-[#cc0000] px-4 py-3 text-sm uppercase text-white'>
+        <div className='mr-3 cursor-pointer rounded-md border bg-[#cc0000] px-2 py-1 text-sm uppercase text-white md:px-4 md:py-3'>
           Subscribe
         </div>
       </div>
 
       {/* Video Description */}
-      <p className='mt-3 ml-16 w-4/5 text-sm text-[#606060] line-clamp-3'>
+      <p className='mt-3 text-sm text-[#606060] line-clamp-3 md:ml-16 md:w-4/5'>
         {description}
       </p>
     </div>

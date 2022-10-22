@@ -16,12 +16,13 @@ function ResultsMain() {
             <VideoCard
               key={i}
               title={result.snippet.title}
-              url={result.snippet.thumbnails.medium.url}
+              url={result.snippet.thumbnails.high.url}
               channel={result.snippet.channelTitle}
               timestamp={result.snippet.publishedAt}
               description={result.snippet.description}
               videoId={result.id.videoId}
               total={results.length}
+              i={i}
             />
           ))}
       </div>

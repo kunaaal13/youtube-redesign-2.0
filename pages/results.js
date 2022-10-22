@@ -8,18 +8,18 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import { setSearchResults } from '../redux/searchSlice'
 import { fetchSearchResults } from '../utils/fetchData'
 
-function Results({ res }) {
-  const router = useRouter()
-  const { search_query } = router.query
+function Results({ res, search_query }) {
   const dispatch = useDispatch()
   console.log('res', res)
+
+  console.log('search_query', search_query)
 
   dispatch(setSearchResults(res))
 
   return (
     <div className='h-screen overflow-hidden bg-white text-black'>
       <Head>
-        <title>{search_query}</title>
+        <title>Search : {search_query}</title>
         <meta name='description' content='Youtube redesign' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
@@ -48,6 +48,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
+      search_query,
       res: res.items,
     },
   }

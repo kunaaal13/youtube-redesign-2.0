@@ -11,7 +11,7 @@ function VideoCard({
   timestamp,
   description,
   videoId,
-  key,
+  i,
   total,
 }) {
   const [imageError, setImageError] = useState(false)
@@ -29,7 +29,7 @@ function VideoCard({
       <div
         className={`mb-5 flex w-full items-center justify-start sm:pr-5 md:pr-20 ${
           imageError ? 'hidden' : ''
-        } ${key === total - 1 ? 'mb-20' : ''}`}
+        } ${i === total - 1 ? 'mb-20' : ''}`}
       >
         <div className='relative h-36 w-[240px] cursor-pointer rounded-md border sm:w-80 md:h-48 md:w-[22rem]'>
           <Image

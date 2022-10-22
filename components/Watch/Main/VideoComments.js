@@ -30,10 +30,10 @@ function VideoComments({ comments }) {
           <div className='ml-4 flex flex-1 flex-col'>
             {/* Name */}
             <div className='flex items-center'>
-              <h3 className='text-sm font-semibold'>
+              <h3 className='text-sm font-semibold line-clamp-1'>
                 {comment.snippet.topLevelComment.snippet.authorDisplayName}
               </h3>
-              <h3 className='ml-2 text-sm text-[#606060]'>
+              <h3 className='ml-1 text-sm text-[#606060] md:ml-2'>
                 {dayjs().to(
                   dayjs(comment.snippet.topLevelComment.snippet.publishedAt)
                 )}

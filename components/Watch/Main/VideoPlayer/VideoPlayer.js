@@ -6,7 +6,7 @@ const ReactPlayer = dynamic(() => import('react-player/youtube'), {
 
 function VideoPlayer({ id }) {
   return (
-    <div className='relative mb-4 h-60 min-h-[16rem] w-full max-w-full rounded-md pt-[56.25%] xl:min-h-[28rem]'>
+    <div className='relative mb-4 h-60 min-h-[16rem] w-full rounded-md pt-[56.25%] sm:max-w-full xl:min-h-[28rem]'>
       <ReactPlayer
         className='rounded-md'
         url={`https://www.youtube.com/watch?v=${id}`}

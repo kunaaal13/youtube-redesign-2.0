@@ -26,7 +26,7 @@ function VideoCard({ video }) {
       <div className='flex flex-col items-center'>
         <div className='relative mx-auto h-44 w-[264px] cursor-pointer rounded-md border sm:w-96 md:h-40 md:w-[17rem]'>
           <Image
-            src={imageError ? fallBackSrc : video.snippet.thumbnails.medium.url}
+            src={imageError ? fallBackSrc : video.snippet.thumbnails.high.url}
             onError={() => setImageError(true)}
             alt={`Thumbnail for`}
             layout='fill'

@@ -45,6 +45,7 @@ export const searchSlice = createSlice({
   reducers: {
     setSearch: (state, action) => {
       state.value = action.payload
+      console.log('search value in redux', state.value)
     },
 
     setSearchResults: (state, action) => {

@@ -9,7 +9,7 @@ function WatchMain({ videoId, video, channel, comments }) {
   tags = tags && tags.length >= 2 ? tags.slice(0, 2) : tags
 
   return (
-    <div className='flex h-full flex-1 flex-col items-center px-3 py-3 pb-48 sm:px-9 xl:flex-[0.67]'>
+    <div className='flex h-full max-w-full flex-1 flex-col items-center px-3 py-3 pb-48 sm:px-9 xl:flex-[0.67]'>
       <VideoPlayer id={videoId} />
 
       {/* Video Details */}

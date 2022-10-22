@@ -12,7 +12,7 @@ function SuggestedVideos({ videos }) {
         <VideoCard
           key={i}
           videoId={video.id.videoId}
-          url={video.snippet.thumbnails.medium.url}
+          url={video.snippet.thumbnails.high.url}
           title={video.snippet.title}
           channelTitle={video.snippet.channelTitle}
           timestamp={dayjs().to(dayjs(video.snippet.publishedAt))}

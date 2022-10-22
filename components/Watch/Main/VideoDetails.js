@@ -23,7 +23,7 @@ function VideoDetails({ likes, views, title, timestamp, tags }) {
         ))}
 
       {/* Video Title */}
-      <h1 className='text-xl'>{title}</h1>
+      <h1 className='text-lg md:text-xl'>{title}</h1>
 
       {/* Video Stats */}
       <div className='mt-2 flex w-full items-center justify-between'>
@@ -50,19 +50,19 @@ function VideoDetails({ likes, views, title, timestamp, tags }) {
           </span>
 
           {/* Share */}
-          <span className='mr-4 flex items-center'>
+          <span className='mr-4 hidden items-center sm:inline-flex'>
             <BiShare className='mr-1 h-5 w-5 cursor-pointer text-[#606060]' />
             Share
           </span>
 
           {/* Save */}
-          <span className='mr-4 flex items-center'>
+          <span className='mr-4 hidden items-center sm:inline-flex'>
             <BiListPlus className='mr-1 h-6 w-6 cursor-pointer text-[#606060]' />
             Save
           </span>
 
           {/* More */}
-          <BiDotsHorizontalRounded className='h-6 w-6 cursor-pointer text-[#606060]' />
+          <BiDotsHorizontalRounded className='hidden h-6 w-6 cursor-pointer text-[#606060] sm:inline-flex' />
         </div>
       </div>
     </div>

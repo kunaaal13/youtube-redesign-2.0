@@ -13,11 +13,14 @@ function Search({ desktop }) {
   const dispatch = useDispatch()
   const router = useRouter()
 
+  const { search_query } = router.query
+  console.log('search_query', search_query)
+
   const [value, setValue] = useState(searchValue)
 
   const handleSearch = () => {
     dispatch(setSearch(value))
-    dispatch(fetchSearchResults('search'))
+    // dispatch(fetchSearchResults('search'))
 
     router.push('/results', {
       pathname: '/results',
@@ -40,7 +43,10 @@ function Search({ desktop }) {
         type='text'
         placeholder='Search'
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {
+          e.preventDefault
+          setValue(e.target.value)
+        }}
         className='ml-5 h-10 flex-1 bg-white outline-none'
       />
       <MagnifyingGlassIcon
