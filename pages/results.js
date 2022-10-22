@@ -15,15 +15,16 @@ function Results({ res, search_query }) {
   useEffect(() => {
     const fetchResults = async () => {
       const { search_query } = router.query
+
+      console.log('search_query use effect', search_query)
       const value = search_query
       const results = await fetchSearchResults(value)
       dispatch(setSearch(value))
-      dispatch(setSearchResults(null))
       dispatch(setSearchResults(results.items))
     }
 
     fetchResults()
-  }, [dispatch, search_query])
+  }, [dispatch, search_query, router.query])
 
   return (
     <div className='h-screen overflow-hidden bg-white text-black'>

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { selectSearchResults } from '../../redux/searchSlice'
 import VideoCard from './VideoCard'
 
 function ResultsMain() {
   const results = useSelector(selectSearchResults)
-  console.log('results 2', results)
-  console.log('results 2', typeof results)
+
+  useEffect(() => {}, [results])
 
   return (
     <div className='feed h-full w-full flex-1 overflow-hidden border-t p-3 pb-7 lg:flex-[0.85]'>
