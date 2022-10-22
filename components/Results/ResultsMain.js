@@ -10,7 +10,7 @@ function ResultsMain() {
 
   return (
     <div className='feed h-full w-full flex-1 overflow-hidden border-t p-3 pb-7 lg:flex-[0.85]'>
-      <div className='mb-10 h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth rounded-md bg-gray-100 p-3 pb-80 text-center md:p-6 md:pr-7'>
+      <div className='mb-10 h-full w-full overflow-y-auto overflow-x-hidden scroll-smooth rounded-md bg-gray-100 p-3 px-5 pb-80 text-center md:p-6 md:pr-7'>
         {results &&
           results.map((result, i) => (
             <VideoCard
