@@ -23,7 +23,7 @@ function Search({ desktop }) {
     dispatch(setSearch(value))
     dispatch(setSearchResults(null))
 
-    router.push('/results', {
+    router.push({
       pathname: '/results',
       query: {
         search_query: value,

@@ -8,17 +8,21 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import { setSearch, setSearchResults } from '../redux/searchSlice'
 import { fetchSearchResults } from '../utils/fetchData'
 
-function Results({ res, search_query }) {
+function Results({ res }) {
   const dispatch = useDispatch()
   const router = useRouter()
+  console.log('query router', router.query)
+  const { search_query } = router.query
+  console.log('search query simply', search_query)
 
   useEffect(() => {
     const fetchResults = async () => {
-      const { search_query } = router.query
+      // const { search_query } = router.query
 
       console.log('search_query use effect', search_query)
       const value = search_query
       const results = await fetchSearchResults(value)
+      console.log('results', results)
       dispatch(setSearch(value))
       dispatch(setSearchResults(results.items))
     }
@@ -60,7 +64,6 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      search_query,
       res: res.items,
     },
   }
