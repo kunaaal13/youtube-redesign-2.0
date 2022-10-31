@@ -10,10 +10,31 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Search from './Search'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, logout, selectUser } from '../../redux/userSlice'
 
 function Header() {
   const [showMobileSearch, setShowMobileSearch] = useState(false)
   const router = useRouter()
+  const { data: session } = useSession()
+  const dispatch = useDispatch()
+  const user = useSelector(selectUser)
+
+  // handle authentication
+  useEffect(() => {
+    if (!session) {
+      router.push('/login')
+      dispatch(logout())
+    } else {
+      dispatch(
+        login({
+          displayName: session.user.name,
+          photoUrl: session.user.image,
+        })
+      )
+    }
+  }, [session, router, dispatch])
 
   // To handle the mobile search bar
   useEffect(() => {
@@ -70,8 +91,13 @@ function Header() {
 
         {/* Avatar */}
         <img
+          onClick={() => {
+            signOut()
+          }}
           src={
-            'https://pbs.twimg.com/profile_images/1562753790369218560/wtiHWrkG_400x400.jpg'
+            user
+              ? user.photoUrl
+              : 'https://pbs.twimg.com/profile_images/1562753790369218560/wtiHWrkG_400x400.jpg'
           }
           alt='avatar'
           className='h-9 w-9 cursor-pointer rounded-full lg:h-11 lg:w-11'

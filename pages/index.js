@@ -11,8 +11,9 @@ import {
   setVideos,
 } from '../redux/videoSlice'
 import { fetchVideoSSR } from '../utils/fetchData'
+import { getSession } from 'next-auth/react'
 
-export default function Home({ items, nextPageToken, pageInfo }) {
+export default function Home({ items, nextPageToken, pageInfo, session }) {
   const dispatch = useDispatch()
   dispatch(setVideos(items))
   dispatch(setActiveCategory('All'))
@@ -46,16 +47,20 @@ export default function Home({ items, nextPageToken, pageInfo }) {
 }
 
 // server side rendering
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const res = await fetchVideoSSR()
 
   const { items, nextPageToken, pageInfo } = res
+
+  // authentication
+  const session = await getSession(context)
 
   return {
     props: {
       items,
       nextPageToken,
       pageInfo,
+      session,
     }, // will be passed to the page component as props
   }
 }

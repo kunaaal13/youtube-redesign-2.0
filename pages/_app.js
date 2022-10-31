@@ -4,8 +4,9 @@ import { store } from '../redux/store'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import Progress from '../components/progress/Progress'
+import { SessionProvider } from 'next-auth/react'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const router = useRouter()
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -31,10 +32,12 @@ function MyApp({ Component, pageProps }) {
   }, [router])
 
   return (
-    <Provider store={store}>
-      <Progress isAnimating={isAnimating} />
-      <Component {...pageProps} />
-    </Provider>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <Progress isAnimating={isAnimating} />
+        <Component {...pageProps} />
+      </Provider>
+    </SessionProvider>
   )
 }
 
